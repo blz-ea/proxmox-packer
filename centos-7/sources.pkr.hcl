@@ -1,51 +1,51 @@
 source "proxmox" "template" {
-  proxmox_url 				= "${var.proxmox_hostname}/api2/json"
+  proxmox_url               = "${var.proxmox_hostname}/api2/json"
   insecure_skip_tls_verify 	= var.proxmox_insecure_skip_tls_verify
-  username 					= var.proxmox_username
-  password 					= var.proxmox_password
-  node 						= var.proxmox_node_name
+  username                  = var.proxmox_username
+  password                  = var.proxmox_password
+  node                      = var.proxmox_node_name
 
   vm_name   = var.vm_name
-  vm_id 	= var.vm_id
+  vm_id     = var.vm_id
 
-  memory 	= var.vm_memory
+  memory    = var.vm_memory
   sockets   = var.vm_sockets
-  cores 	= var.vm_cores
-  os 		= "l26"
+  cores     = var.vm_cores
+  os        = "l26"
 
   network_adapters {
-    model 	= "virtio"
+    model   = "virtio"
     bridge 	= "vmbr0"
   }
 
-  qemu_agent 		    = true
-  scsi_controller 	    = "virtio-scsi-pci"
+  qemu_agent            = true
+  scsi_controller       = "virtio-scsi-pci"
 
   disks {
-    type				= "scsi"
-    disk_size 			= "30G"
-    storage_pool 		= var.vm_storage_pool
-    storage_pool_type 	= "lvm-thin"
-    format 				= "raw"
+    type                = "scsi"
+    disk_size           = "30G"
+    storage_pool        = var.vm_storage_pool
+    storage_pool_type   = "lvm-thin"
+    format              = "raw"
   }
 
-  ssh_username 			= var.username
-  ssh_password 			= var.user_password
-  ssh_timeout			= "30m"
+  ssh_username          = var.username
+  ssh_password          = var.user_password
+  ssh_timeout           = "30m"
 
-  iso_file 				= var.iso_file
-  iso_url				= var.iso_url
+  iso_file              = var.iso_file
+  iso_url               = var.iso_url
   iso_storage_pool      = var.iso_storage_pool
   iso_checksum          = var.iso_checksum
 
-  onboot				= true
+  onboot                = true
 
-  template_name 		= var.vm_name
-  template_description 	= var.template_description
-  unmount_iso 		 	= true
+  template_name         = var.vm_name
+  template_description  = var.template_description
+  unmount_iso           = true
 
-  http_directory 		= "./http"
-  boot_wait				= "10s"
+  http_directory        = "./http"
+  boot_wait             = "10s"
   boot_command = [
     "<esc><wait><wait><wait><wait>",
     "linux ks=http://{{.HTTPIP}}:{{.HTTPPort}}/preseed.cfg",

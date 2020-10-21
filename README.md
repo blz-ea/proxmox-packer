@@ -73,7 +73,7 @@ resource "proxmox_virtual_environment_file" "ubuntu-18-04-5-server-amd64" {
 ```hcl-terraform
 module "packer_ubuntu_server_18_04_5_amd64" {
   # ...
-  remove_template       = true
+  remove_template = true
   # ...
 }
 ```
