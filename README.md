@@ -6,7 +6,7 @@
 |---------------|---------|
 | proxmox       | \>= 6.2 |
 | terraform     | \>= 0.13 |
-| packer        | = 1.6.0 |
+| packer        | \>= 1.6.5 |
 | python        | \>= 3.0  |
 | pip           | \>= 20.0 |
 | - [`proxmoxer`](https://github.com/proxmoxer/proxmoxer)           | \>= 1.1.1 |
